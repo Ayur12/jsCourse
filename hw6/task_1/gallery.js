@@ -20,14 +20,13 @@ function openImage(event) {
 
     /* создаем картинку */
     const image = document.createElement("img");
-
     /* добавляем атрибуты к картинке */
     image.id = `image-${seed}`;
     image.src = `https://picsum.photos/seed/${seed}/800`;
     image.alt = `Изображение ${seed}`;
     image.onload = () => console.log("Картинка есть!");
     image.onerror = () => console.log("Картинки нет!");
-    
+
     /* добавляем новый блок в галерею */
     gallery.appendChild(image);
 }

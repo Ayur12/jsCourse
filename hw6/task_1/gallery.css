@@ -9,7 +9,11 @@ body {
     margin: 0;
     padding: 0;
 }
-
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .gallery {
     display: flex;
     flex-direction: column;
@@ -35,4 +39,10 @@ body {
 }
 .thumbnails img:hover {
     transform: translateY(-5px);
+}
+
+
+.arrows {
+    width: 30px;
+    height: 30px;
 }
