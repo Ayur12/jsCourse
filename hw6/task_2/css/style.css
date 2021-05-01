@@ -1,0 +1,35 @@
+body, html {
+    height: 100%;
+}
+h1  {
+    color: darkblue;
+}
+
+.catalog {
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+   }
+
+.product {
+    width: 30%;
+    border: 1px solid rgb(36, 20, 23);
+    text-align: center;
+    padding:10px 10px;
+    margin: 0 auto;
+   
+}
+
+button {
+    font-size: 25px;
+    color: saddlebrown;
+    
+}
+img {
+    width: 90%;
+}
+.price {
+    font-size: 30px;
+    color: red;
+}
