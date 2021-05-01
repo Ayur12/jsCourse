@@ -36,11 +36,9 @@ const game = {
      */
     start() {
         game.setGameStatus(GAME_STATUS_STARTED);
-
         board.render();
         snake.render();
         food.render();
-
     },
 
     /**
@@ -58,10 +56,13 @@ const game = {
     stop() {
         game.setGameStatus(GAME_STATUS_STOPPED);
         board.clearBoard();
-        let score = document.getElementById('score-value');
-        score.innerHTML = '0';
+        board.clearScore();
+        snake.startSnake();
+        snake.render();
         /* добавить сюда код */
     },
+
+
 
     /**
      * Функция выполняет передвижение змейки по полю.
@@ -103,6 +104,8 @@ const game = {
             /* устанавливаем следующую позицию змейки с вторым параметром "не удалять хвост змейки",
              * змейка съев еду вырастает на одну клетку */
             snake.setPosition(nextPosition, false);
+
+
 
             /* удаляем еду с поля */
             food.removeItem(foundFood);
@@ -177,7 +180,13 @@ const board = {
 
         const board = document.getElementById('board');
         board.innerHTML = '';
-    }
+    },
+
+    /* обнуляем счет*/
+    clearScore() {
+        let score = document.getElementById('score-value');
+        score.innerHTML = '0';
+    },
 };
 
 /**
@@ -308,16 +317,24 @@ const snake = {
         } else if (position.left > config.size - 1) {
             position.left = 0;
         }
-
-        /* проверка если змейка врезается в саму себя*/
         for (let i = 0; i < this.parts.length; i++) {
             if (position.top == this.parts[i].top && position.left == this.parts[i].left) {
                 alert('Game over');
                 game.stop();
             }
         }
-
         return position;
+    },
+
+
+    /* проверка если змейка врезается в саму себя*/
+    checkedEatSnake() {
+        for (let i = 0; i < this.parts.length; i++) {
+            if (position.top == this.parts[i].top && position.left == this.parts[i].left) {
+                alert('Game over');
+                game.stop();
+            }
+        }
     },
 
     /**
@@ -344,6 +361,16 @@ const snake = {
         score.innerHTML = this.parts.length - 3;
 
 
+    },
+    startSnake() {
+        let snakeLenght = this.parts.length;
+        while (snakeLenght > 3) {
+            this.parts.shift();
+            snakeLenght--;
+        };
+        this.parts[0] == { top: 9, left: 8 };
+        this.parts[1] == { top: 9, left: 9 };
+        this.parts[2] == { top: 9, left: 10 };
     },
 
     /**
